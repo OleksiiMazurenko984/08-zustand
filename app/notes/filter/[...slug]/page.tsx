@@ -16,15 +16,14 @@ export async function generateMetadata({
   params,
 }: NotesPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const selectedTag = slug[0] === 'all' ? undefined : (slug[0] as NoteTag);
 
   return {
-    title: `Filtered as ${selectedTag}`,
-    description: `Displayed all notes filtered using tag chosen by user. Current tag is ${selectedTag}`,
+    title: `Filtered as ${slug[0]}`,
+    description: `Displayed all notes filtered using tag chosen by user. Current tag is ${slug[0]}`,
     openGraph: {
-      title: `Filtered as ${selectedTag}`,
-      description: `Displayed all notes filtered using tag chosen by user. Current tag is ${selectedTag}`,
-      url: `https://08-zustand-beta-six-31.vercel.app/notes/filter/${selectedTag}`,
+      title: `Filtered as ${slug[0]}`,
+      description: `Displayed all notes filtered using tag chosen by user. Current tag is ${slug[0]}`,
+      url: `https://08-zustand-beta-six-31.vercel.app/notes/filter/${slug[0]}`,
       images: [
         {
           url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
