@@ -1,4 +1,10 @@
 import css from './page.module.css';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Home page',
+  description: 'Page with general description of site',
+};
 
 export default function Home() {
   return (

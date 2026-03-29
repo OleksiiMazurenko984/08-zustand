@@ -6,10 +6,36 @@ import {
 } from '@tanstack/react-query';
 import NotesClient from './Notes.client';
 import { NoteTag } from '@/types/note';
+import { Metadata } from 'next';
 
 type NotesPageProps = {
   params: Promise<{ slug: string[] }>;
 };
+
+export async function generateMetadata({
+  params,
+}: NotesPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const selectedTag = slug[0] === 'all' ? undefined : (slug[0] as NoteTag);
+
+  return {
+    title: `Filtered as ${selectedTag}`,
+    description: `Displayed all notes filtered using tag chosen by user. Current tag is ${selectedTag}`,
+    openGraph: {
+      title: `Filtered as ${selectedTag}`,
+      description: `Displayed all notes filtered using tag chosen by user. Current tag is ${selectedTag}`,
+      url: `https://08-zustand-beta-six-31.vercel.app/notes/filter/${selectedTag}`,
+      images: [
+        {
+          url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'NoteHub',
+        },
+      ],
+    },
+  };
+}
 
 export default async function NotesPage({ params }: NotesPageProps) {
   const queryClient = new QueryClient();
