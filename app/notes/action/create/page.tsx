@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   title: 'NoteHub Create note',
   description:
     'Create a new note in NoteHub and keep your draft saved while you type',
-  other: {
-    url: 'https://08-zustand-beta-six-31.vercel.app/notes/action/create',
+  alternates: {
+    canonical: 'https://08-zustand-beta-six-31.vercel.app/notes/action/create',
   },
   openGraph: {
     title: 'Create note',

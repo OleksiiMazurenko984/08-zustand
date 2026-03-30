@@ -4,6 +4,9 @@ import css from './page.module.css';
 export const metadata: Metadata = {
   title: 'NoteHub not found',
   description: 'Sorry this page was not found on site',
+  alternates: {
+    canonical: 'https://08-zustand-beta-six-31.vercel.app/',
+  },
   openGraph: {
     title: 'NoteHub not found',
     description: 'Sorry this page was not found on site',

@@ -21,15 +21,15 @@ export default function NoteForm() {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const { noteDraft, setNoteDraft, clearNoteDraft } = useNoteDraftStore();
+  const { draft, setDraft, clearDraft } = useNoteDraftStore();
 
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    setNoteDraft({
-      ...noteDraft,
+    setDraft({
+      ...draft,
       [event.target.name]: event.target.value,
     });
   };
@@ -38,7 +38,7 @@ export default function NoteForm() {
     mutationFn: createNote,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['notes'] });
-      clearNoteDraft();
+      clearDraft();
       router.back();
     },
   });
@@ -77,7 +77,7 @@ export default function NoteForm() {
           minLength={3}
           maxLength={50}
           required
-          defaultValue={noteDraft.title}
+          defaultValue={draft.title}
           onChange={handleChange}
         />
       </div>
@@ -90,7 +90,7 @@ export default function NoteForm() {
           rows={8}
           className={css.textarea}
           maxLength={500}
-          defaultValue={noteDraft.content}
+          defaultValue={draft.content}
           onChange={handleChange}
         />
       </div>
@@ -101,7 +101,7 @@ export default function NoteForm() {
           id={`${id}-tag`}
           name="tag"
           className={css.select}
-          defaultValue={noteDraft.tag}
+          defaultValue={draft.tag}
           onChange={handleChange}
         >
           <option value="Todo">Todo</option>

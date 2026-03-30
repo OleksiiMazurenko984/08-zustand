@@ -3,12 +3,12 @@ import { persist } from 'zustand/middleware';
 import type { NoteData } from '@/types/note';
 
 interface NoteDraft {
-  noteDraft: NoteData;
-  setNoteDraft: (newNoteData: NoteData) => void;
-  clearNoteDraft: () => void;
+  draft: NoteData;
+  setDraft: (newNoteData: NoteData) => void;
+  clearDraft: () => void;
 }
 
-export const initialNoteDraft: NoteData = {
+export const initialDraft: NoteData = {
   title: '',
   content: '',
   tag: 'Todo',
@@ -18,22 +18,22 @@ export const useNoteDraftStore = create<NoteDraft>()(
   persist(
     set => {
       return {
-        noteDraft: initialNoteDraft,
-        setNoteDraft: newNoteDraft => {
+        draft: initialDraft,
+        setDraft: newDraft => {
           set({
-            noteDraft: newNoteDraft,
+            draft: newDraft,
           });
         },
-        clearNoteDraft: () => {
+        clearDraft: () => {
           set({
-            noteDraft: initialNoteDraft,
+            draft: initialDraft,
           });
         },
       };
     },
     {
       name: 'note-draft',
-      partialize: state => ({ noteDraft: state.noteDraft }),
+      partialize: state => ({ draft: state.draft }),
     }
   )
 );
